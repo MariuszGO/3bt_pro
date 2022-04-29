@@ -24,16 +24,17 @@ class samochod{
 
     public function pobierz_marke(){
         require 'baza.php';
-        $sql = "Select * from marka";
-        // echo $sql;
+        $sql = "Select * from marka;";
+     //    echo $sql;
       //  echo "dssd";
         $result = $conn->query($sql);
+        //echo $result;
         echo "<select name='ma'>";
         foreach ($result as $key){
             $klucz = $key["id_marka"];
            // echo $klucz. " ";
             echo "<option value='$klucz'>" . $key["marka_nazwa"] . "<br> </option>";
-
+ 
         }
         echo "</select>";
 
@@ -52,6 +53,28 @@ class samochod{
          
         if($result == true)  echo " Wysłano do bazy "; else echo " Błąd ";
      }
+
+
+
+
+     public function pobierz_model($id_marka){
+      require 'baza.php';
+      $sql = "Select * from model where id_marka = $id_marka;";
+   //    echo $sql;
+    //  echo "dssd";
+      $result = $conn->query($sql);
+      //echo $result;
+      echo "<select name='ma'>";
+      foreach ($result as $key){
+          $klucz = $key["id_model"];
+         // echo $klucz. " ";
+          echo "<option value='$klucz'>" . $klucz . $key["model_nazwa"] . "<br> </option>";
+
+      }
+      echo "</select>";
+
+     // if($result == true)  echo " Wysłano do bazy "; else echo " Błąd ";
+   }
 
 
 }
